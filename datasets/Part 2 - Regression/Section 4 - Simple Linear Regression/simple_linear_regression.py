@@ -15,6 +15,10 @@ import pandas as pd
 
 # Importar el data set
 dataset = pd.read_csv('Salary_Data.csv')
+
+Xo = dataset.iloc[:, :-1].values
+yo = dataset.iloc[:, 1].values
+
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, 1].values
 
@@ -31,8 +35,8 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 """
-
-# Crear modelo de Regresión Lienal Simple con el conjunto de entrenamiento
+    
+# Crear modelo de Regresión Lineal Simple con el conjunto de entrenamiento
 from sklearn.linear_model import LinearRegression
 regression = LinearRegression()
 regression.fit(X_train, y_train)
@@ -55,4 +59,3 @@ plt.title("Sueldo vs Años de Experiencia (Conjunto de Testing)")
 plt.xlabel("Años de Experiencia")
 plt.ylabel("Sueldo (en $)")
 plt.show()
-
