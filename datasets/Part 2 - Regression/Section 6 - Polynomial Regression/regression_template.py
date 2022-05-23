@@ -33,19 +33,23 @@ X_test = sc_X.transform(X_test)"""
 
 # Ajustar la regresión con el dataset
 # Crear aquí nuestro modelo de regresión
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+poly_reg = PolynomialFeatures(degree = 4)
+X_poly = poly_reg.fit_transform(X)
+lin_reg = LinearRegression()
+lin_reg.fit(X_poly, y)
 
-
-# Predicción de nuestros modelos
-y_pred = regression.predict(6.5)
 
 # Visualización de los resultados del Modelo Polinómico
+
 X_grid = np.arange(min(X), max(X), 0.1)
 X_grid = X_grid.reshape(len(X_grid), 1)
 plt.scatter(X, y, color = "red")
-plt.plot(X_grid, regression.predict(X_grid), color = "blue")
-plt.title("Modelo de Regresión")
+plt.plot(X_grid, lin_reg.predict(poly_reg.fit_transform(X_grid)), color = "blue")
+plt.title("Modelo de Regresión Polinómica")
 plt.xlabel("Posición del empleado")
 plt.ylabel("Sueldo (en $)")
 plt.show()
 
-
+lin_reg.predict(poly_reg.fit_transform([[6.5]]))
