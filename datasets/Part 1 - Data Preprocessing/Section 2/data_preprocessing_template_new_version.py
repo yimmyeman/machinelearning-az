@@ -14,6 +14,7 @@ Created on Sun Apr 26 12:11:34 2020
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+
  
 # Importar el Data set
 dataset = pd.read_csv("Data.csv")
