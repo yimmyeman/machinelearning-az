@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+ #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Mon Mar 11 18:38:15 2019
@@ -25,7 +25,7 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 """
 
-# Escalado de variables
+# Escalado de variables IMPORTANTE!!
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 sc_y = StandardScaler()
@@ -38,7 +38,7 @@ regression = SVR(kernel = "rbf")
 regression.fit(X, y)
 
 # Predicción de nuestros modelos con SVR
-y_pred = sc_y.inverse_transform(regression.predict(sc_X.transform(np.array([[6.5]]))))
+y_pred = sc_y.inverse_transform(regression.predict(sc_X.transform(np.array([[6.5]]))).reshape(1,-1)).reshape(1,)
 
 # Visualización de los resultados del SVR
 X_grid = np.arange(min(X), max(X), 0.1)

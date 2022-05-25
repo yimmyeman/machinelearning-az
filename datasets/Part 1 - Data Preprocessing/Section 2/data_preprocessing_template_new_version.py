@@ -22,6 +22,7 @@ X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, 3].values 
 
 # Tratamiento de los nan
+
 from sklearn.impute import SimpleImputer
 imputer = SimpleImputer(missing_values = np.nan, strategy = "mean", verbose=0)
 imputer = imputer.fit(X[:,1:3]) 

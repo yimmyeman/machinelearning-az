@@ -15,8 +15,8 @@ import pandas as pd
 
 # Importar el data set
 dataset = pd.read_csv('Position_Salaries.csv')
-X = dataset.iloc[:, 1:2].values
-y = dataset.iloc[:, 2].values
+X = dataset.iloc[:, 1:2].values #Debe ser matriz (10,) seria vector
+y = dataset.iloc[:, 2].values #Esto es un vector
 
 
 # Dividir el data set en conjunto de entrenamiento y conjunto de testing
@@ -38,8 +38,8 @@ lin_reg.fit(X, y)
 
 # Ajustar la regresión polinómica con el dataset
 from sklearn.preprocessing import PolynomialFeatures
-poly_reg = PolynomialFeatures(degree = 6)
-X_poly = poly_reg.fit_transform(X)
+poly_reg = PolynomialFeatures(degree = 6) #valor por defecto es 2
+X_poly = poly_reg.fit_transform(X) #Transforma X
 lin_reg_2 = LinearRegression()
 lin_reg_2.fit(X_poly, y)
 
@@ -52,8 +52,8 @@ plt.ylabel("Sueldo (en $)")
 plt.show()
 
 # Visualización de los resultados del Modelo Polinómico
-X_grid = np.arange(min(X), max(X), 0.1)
-X_grid = X_grid.reshape(len(X_grid), 1)
+X_grid = np.arange(min(X), max(X), 0.1) # Mas puntos intermedios
+X_grid = X_grid.reshape(len(X_grid), 1) # Convirtiendo en Matriz X
 plt.scatter(X, y, color = "red")
 plt.plot(X_grid, lin_reg_2.predict(poly_reg.fit_transform(X_grid)), color = "blue")
 plt.title("Modelo de Regresión Polinómica")
